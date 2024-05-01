@@ -1,0 +1,29 @@
+class AppImage {
+  static const String welcomeImage1 = "asset/images/Welcome_Image1.png";
+  static const String welcomeImage2 = "asset/images/Welcome_Image2.png";
+  static const String ButtonImage = "asset/images/NextBTN.png";
+  static const String Unb1_image1 = "asset/images/Unb1_Image1.png";
+  static const String Unb1_image2 = "asset/images/Unb1_Image2.png";
+  static const String Unb2_image = "asset/images/Unb2_Image.png";
+  static const String Unb3_image = "asset/images/Unb3_Image.png";
+  static const String bg_image = "asset/images/bg.png";
+  static const String ic_Google = "asset/images/ic_google.png";
+  static const String googleMapImage = "asset/images/googleMap.png";
+  static const String homeCurve = "asset/images/HomeCurve.png";
+  static const String homeMenu = "asset/images/homeMenu.png";
+  static const String homeMan = "asset/images/homeMan.png";
+  static const String restaurant = "asset/images/restaurant.png";
+  static const String arrowBTN = "asset/images/ArrowBTN.png";
+  static const String scaffoldStart = "asset/images/scaffoldStart.png";
+  static const String language = "asset/images/language.png";
+  static const String backButton = "asset/images/Back.png";
+  static const String restaurant_Main = "asset/images/Restaurant_Main.png";
+  static const String logo = "asset/images/logo.png";
+  static const String foodMenuBG = "asset/images/foodMenuBG.png";
+  static const String menuGirl = "asset/images/MenuGirl.png";
+  static const String forwordButton = "asset/images/Back1.png";
+  static const String upload_Cloud = "asset/images/Upload_Cloud.png";
+  static const String favorite = "asset/images/favorite.png";
+  static const String ratingStar = "asset/images/ratingStar.png";
+  static const String bookIcon = "asset/images/bookIcon.png";
+}
