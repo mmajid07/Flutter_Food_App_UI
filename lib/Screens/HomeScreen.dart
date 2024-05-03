@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sol_solution_food_app/Component/Custem_Text_Field.dart';
 import 'package:sol_solution_food_app/Component/CustomContainer.dart';
@@ -186,7 +187,7 @@ class _homeScreenState extends State<homeScreen> {
                 ),
                 Material(
                     elevation: 5,
-                    color: AppTheme.lightGrey,
+                    color: AppTheme.white,
                     child: SizedBox(
                       height: ScreenSize.screenHeight(context) * 0.08,
                       child: ListView.builder(
@@ -203,38 +204,42 @@ class _homeScreenState extends State<homeScreen> {
                                       onTap: () {
                                         value.setColor(index);
                                       },
-                                      child: CustomContainer(
-                                        radius: 50,
-                                        color: value.selectedIndex == index
-                                            ? AppTheme.primaryColor
-                                            : AppTheme.white,
-                                        widget: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal:
-                                                  ScreenSize.screenWidth(
+                                      child: Material(
+                                        elevation: 2,
+                                        borderRadius: BorderRadius.circular(30),
+                                        child: CustomContainer(
+                                          radius: 50,
+                                          color: value.selectedIndex == index
+                                              ? AppTheme.primaryColor
+                                              : AppTheme.white,
+                                          widget: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    ScreenSize.screenWidth(
+                                                            context) *
+                                                        0.02),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                ImageComponent(
+                                                  image: AppImage.homeMan,
+                                                  height: ScreenSize.screenHeight(
                                                           context) *
-                                                      0.02),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              ImageComponent(
-                                                image: AppImage.homeMan,
-                                                height: ScreenSize.screenHeight(
-                                                        context) *
-                                                    0.05,
-                                              ),
-                                              Text(
-                                                "Product ${index + 1}",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color:
-                                                        value.selectedIndex ==
-                                                                index
-                                                            ? AppTheme.white
-                                                            : AppTheme.black),
-                                              )
-                                            ],
+                                                      0.05,
+                                                ),
+                                                Text(
+                                                  "Product ${index + 1}",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      color:
+                                                          value.selectedIndex ==
+                                                                  index
+                                                              ? AppTheme.white
+                                                              : AppTheme.black),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -271,33 +276,31 @@ class _homeScreenState extends State<homeScreen> {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         ImageComponent(
                                           image: AppImage.restaurant,
                                           boxFit: BoxFit.fill,
-                                          height:
-                                              ScreenSize.screenHeight(context) *
-                                                  0.1,
+                                          height:66.h,
+                                          width: 93.w,
                                         ),
                                         SizedBox(
-                                          height:
-                                              ScreenSize.screenHeight(context) *
-                                                  0.1,
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 "Le Couno Restaurants",
-                                                style:
-                                                    AppTheme.lightHeadlineStyle(
-                                                        context),
+                                                style:TextStyle(fontWeight: FontWeight.w400, fontSize: 22.sp),
                                               ),
-                                              Text(
-                                                "Burger-Chicken-Riche-Wings",
-                                                style:
-                                                    AppTheme.bodyStyle(context),
+                                              SizedBox(
+                                                width: 213.w,
+                                                child: Text(
+                                                  "Burger-Chicken-Riche-Wings",
+                                                  style:TextStyle(
+                                                      color: Color(0xffA0A5BA),
+                                                      fontWeight: FontWeight.w400, fontSize: 18.sp),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -306,19 +309,21 @@ class _homeScreenState extends State<homeScreen> {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                       children: [
                                         Row(
                                           children: [
                                             Text(
                                               "Open : ",
-                                              style: AppTheme.goodafternoon(
-                                                  context),
+                                              style:TextStyle(
+
+                                                  fontWeight: FontWeight.w700, fontSize: 14.sp),
                                             ),
                                             Text(
                                               "12:00 PM",
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14.sp,
                                                   color: Colors.green),
                                             )
                                           ],
@@ -327,48 +332,52 @@ class _homeScreenState extends State<homeScreen> {
                                           children: [
                                             Text(
                                               "Close : ",
-                                              style: AppTheme.goodafternoon(
-                                                  context),
+                                              style:TextStyle(
+
+                                                  fontWeight: FontWeight.w700, fontSize: 14.sp),
                                             ),
                                             Text(
                                               "12:00 PM",
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14.sp,
                                                   color: AppTheme.primaryColor),
                                             )
                                           ],
                                         ),
-                                        Icon(
-                                          Icons.favorite_outline,
-                                          color: AppTheme.primaryColor,
+                                        SizedBox(
+                                            width: 29.w,
+                                            height: 30.h,
+                                            child:  Icon(Icons.favorite_outline_sharp, size: 30.sp,color: AppTheme.primaryColor,)
                                         )
                                       ],
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
                                           left:
-                                              ScreenSize.screenWidth(context) *
-                                                  0.04,
+                                          ScreenSize.screenWidth(context) *
+                                              0.04,
                                           bottom:
-                                              ScreenSize.screenWidth(context) *
-                                                  0.02,
+                                          ScreenSize.screenWidth(context) *
+                                              0.02,
                                           top: ScreenSize.screenWidth(context) *
                                               0.01),
                                       child: Row(
                                         children: [
-                                          Icon(
-                                            Icons.star_border_purple500,
-                                            color: AppTheme.primaryColor,
-                                          ),
+                                          SizedBox(
+                                              width:21.w,
+                                              height: 15.h,
+                                              child: ImageComponent(image: AppImage.ratingStar)),
                                           SizedBox(
                                             width: ScreenSize.screenWidth(
-                                                    context) *
+                                                context) *
                                                 0.02,
                                           ),
                                           Text(
                                             "4.7",
                                             style: TextStyle(
-                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w700,
                                             ),
                                           )
                                         ],
@@ -376,15 +385,12 @@ class _homeScreenState extends State<homeScreen> {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                       children: [
                                         SizedBox(
                                           height:
-                                              ScreenSize.screenHeight(context) *
-                                                  0.055,
-                                          width:
-                                              ScreenSize.screenWidth(context) *
-                                                  0.3,
+                                          29.h,
+                                          width:125.w,
                                           child: ElevatedBTN_Component(
                                             onPressed: () {
                                               Navigator.push(
@@ -393,36 +399,37 @@ class _homeScreenState extends State<homeScreen> {
                                                       builder: (context) =>
                                                           RestaurantMenuModerate()));
                                             },
-                                            widget: Text("Moderate"),
+                                            widget: Text("Moderate", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),),
                                             bgColor: AppTheme.white,
                                             fgColor: AppTheme.primaryColor,
                                           ),
                                         ),
                                         SizedBox(
                                           height:
-                                              ScreenSize.screenHeight(context) *
-                                                  0.055,
-                                          width:
-                                              ScreenSize.screenWidth(context) *
-                                                  0.33,
+                                          29.h,
+                                          width:125.w,
                                           child: ElevatedBTN_Component(
                                             onPressed: () {},
                                             widget: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.spaceAround,
                                               children: [
-                                                Text("View Menu"),
-                                                Icon(
-                                                  Icons.book_outlined,
-                                                  color: AppTheme.white,
-                                                )
+                                                Text("View Menu", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w700),),
+                                                SizedBox(width: 1.w,),
+                                                SizedBox(
+                                                    height: 16.h,
+                                                    width: 24.w,
+                                                    child: ImageComponent(image: AppImage.bookIcon))
                                               ],
                                             ),
                                             bgColor: AppTheme.primaryColor,
                                             fgColor: AppTheme.white,
                                           ),
                                         ),
-                                        ImageComponent(image: AppImage.arrowBTN)
+                                        SizedBox(
+                                            width: 38.w,
+                                            height: 40.h,
+                                            child: ImageComponent(image: AppImage.arrowBTN))
                                       ],
                                     )
                                   ],

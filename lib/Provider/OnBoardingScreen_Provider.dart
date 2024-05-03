@@ -31,7 +31,7 @@ class OnBoardingScreenProvider with ChangeNotifier {
 
   void pageChange(int page) {
     currentPage = page;
-
+    notifyListeners();
   }
 
   List<Widget> buildPageIndicator() {

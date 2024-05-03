@@ -21,49 +21,55 @@ class _mapScreenState extends State<mapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage(AppImage.googleMapImage),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage(AppImage.googleMapImage),
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding:
-                  EdgeInsets.only(top: ScreenSize.screenHeight(context) * 0.06),
-              child: CustomTextField(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: AppTheme.black,
-                  size: ScreenSize.screenHeight(context) * 0.04,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding:
+                    EdgeInsets.all(ScreenSize.screenHeight(context) * 0.02),
+                child: CustomTextField(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppTheme.black,
+                    size: ScreenSize.screenHeight(context) * 0.04,
+                  ),
+                  suffix: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(backgroundImage: AssetImage(AppImage.homeMan),),
+                  ),
+                  // suffix: Icon(
+                  //   Icons.circle,
+                  //   color: AppTheme.lightGrey,
+                  //   size: ScreenSize.screenHeight(context) * 0.03,
+                  // ),
+                  controller: searchController,
+                  fillColor: AppTheme.white,
+                  hintText: AppStrings.searchHint,
                 ),
-                suffix: Icon(
-                  Icons.circle,
-                  color: AppTheme.lightGrey,
-                  size: ScreenSize.screenHeight(context) * 0.03,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: ScreenSize.screenHeight(context) * 0.02),
+                child: ElevatedBTN_Component(
+                  bgColor: AppTheme.primaryColor,
+                  fgColor: AppTheme.white,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => homeScreen()));
+                  },
+                  widget: Text(AppStrings.continueBTN),
                 ),
-                controller: searchController,
-                fillColor: AppTheme.white,
-                hintText: AppStrings.searchHint,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  bottom: ScreenSize.screenHeight(context) * 0.02),
-              child: ElevatedBTN_Component(
-                bgColor: AppTheme.primaryColor,
-                fgColor: AppTheme.white,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => homeScreen()));
-                },
-                widget: Text(AppStrings.continueBTN),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

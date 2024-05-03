@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sol_solution_food_app/Component/Custem_Text_Field.dart';
 import 'package:sol_solution_food_app/Component/ElevatedBTN_Component.dart';
 import 'package:sol_solution_food_app/Component/Image_Component.dart';
@@ -96,7 +97,11 @@ class _MapLocationScreenState extends State<MapLocationScreen> {
                           ),
                           Text(
                             "Burger - Chicken - Riche - Wings",
-                            style: AppTheme.bodyStyle(context),
+                            style: TextStyle(
+                                color: Color(0xff808080),
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400
+                            ),
                           ),
                           Row(
                             children: [
@@ -152,8 +157,8 @@ class _MapLocationScreenState extends State<MapLocationScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: ScreenSize.screenWidth(context) * 0.22,
-                          height: ScreenSize.screenHeight(context) * 0.033,
+                          width: 98.w,
+                          height: 33.h,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(
                                 ScreenSize.screenWidth(context) * 0.025),
@@ -172,16 +177,14 @@ class _MapLocationScreenState extends State<MapLocationScreen> {
                                     Text(
                                       "View Menu",
                                       style: TextStyle(
-                                          fontSize:
-                                              ScreenSize.screenHeight(context) *
-                                                  0.01,
+                                          fontSize:10.sp,
+                                          fontWeight: FontWeight.w400,
                                           color: AppTheme.white),
                                     ),
-                                    Icon(
-                                      Icons.book,
-                                      size: ScreenSize.screenHeight(context) *
-                                          0.015,
-                                    ),
+                                    ImageComponent(
+                                        height: 21.h,
+                                        width: 24.w,
+                                        image: AppImage.bookIcon)
                                   ],
                                 )),
                           ),
@@ -194,7 +197,8 @@ class _MapLocationScreenState extends State<MapLocationScreen> {
                             style: TextStyle(
                                 fontSize:
                                     ScreenSize.screenHeight(context) * 0.018,
-                                color: AppTheme.secandryColor),
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff808080)),
                           ),
                         ),
                       ],

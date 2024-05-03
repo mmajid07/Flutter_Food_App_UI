@@ -177,6 +177,8 @@ class _RestaurantMenuModerateState extends State<RestaurantMenuModerate> {
                                       builder: (context) =>
                                           MapLocationScreen()));
                             },
+                            fgColor: AppTheme.white,
+                            bgColor: AppTheme.primaryColor,
                             widget: Text("Moderate")),
                       ),
                       GestureDetector(

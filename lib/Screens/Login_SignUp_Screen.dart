@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sol_solution_food_app/Component/Custem_Text_Field.dart';
 import 'package:sol_solution_food_app/Component/ElevatedBTN_Component.dart';
@@ -264,6 +265,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                           onPressed: () {},
                                           widget: Text(AppStrings.register),
                                           bgColor: AppTheme.primaryColor,
+                                          fgColor: AppTheme.white,
                                         ),
                                         ElevatedBTN_Component(
                                           onPressed: () {},
@@ -284,7 +286,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                               Text(AppStrings.signInWithGoogle),
                                             ],
                                           ),
-                                          bgColor: AppTheme.lightGrey,
+                                          bgColor: Color(0xffF4F4F4),
                                           fgColor: AppTheme.black,
                                         )
                                       ],
@@ -366,9 +368,12 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                               child: TextComponent(
                                                   text:
                                                       AppStrings.forgotPassword,
-                                                  textStyle:
-                                                      AppTheme.buttonStyle(
-                                                          context)),
+                                                  textStyle:TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 12.sp,
+                                                    color: AppTheme.primaryColor
+                                                  )
+                                                       ),
                                             )),
                                         ElevatedBTN_Component(
                                           onPressed: () {
@@ -380,6 +385,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                           },
                                           widget: Text(AppStrings.login),
                                           bgColor: AppTheme.primaryColor,
+                                          fgColor: AppTheme.white,
                                         ),
                                         ElevatedBTN_Component(
                                           onPressed: () {},
@@ -400,7 +406,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                               Text(AppStrings.signInWithGoogle),
                                             ],
                                           ),
-                                          bgColor: AppTheme.lightGrey,
+                                          bgColor: Color(0xffF4F4F4),
                                           fgColor: AppTheme.black,
                                         )
                                       ],

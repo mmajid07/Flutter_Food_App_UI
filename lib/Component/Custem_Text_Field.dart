@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double effectiveRadius = radius ?? 8.0; // Use radius or default value
+    final double effectiveRadius = radius ?? 12.0; // Use radius or default value
 
     return Center(
       child: TextField(
@@ -32,10 +32,11 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: suffix,
           filled: true,
-          fillColor: fillColor,
+          fillColor: Colors.white,
           hintText: hintText,
           prefixIcon: prefixIcon,
           border: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xffBEC5D1)),
             borderRadius: BorderRadius.circular(effectiveRadius),
           ),
         ),

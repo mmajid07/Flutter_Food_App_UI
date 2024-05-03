@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sol_solution_food_app/Utiles/App_Theme.dart';
 import 'package:sol_solution_food_app/Utiles/ScreenSize.dart';
 
 class ElevatedBTN_Component extends StatelessWidget {
@@ -7,6 +8,7 @@ class ElevatedBTN_Component extends StatelessWidget {
   final TextStyle? textStyle;
   final Color? bgColor;
   final Color? fgColor;
+  final Color? borderSideColor;
 
   const ElevatedBTN_Component({
     Key? key,
@@ -15,6 +17,7 @@ class ElevatedBTN_Component extends StatelessWidget {
     this.textStyle,
     this.bgColor,
     this.fgColor,
+    this.borderSideColor,
   }) : super(key: key);
 
   @override
@@ -27,6 +30,7 @@ class ElevatedBTN_Component extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: bgColor,
           foregroundColor: fgColor,
+          side: BorderSide(color: AppTheme.primaryColor), // Change border side color to red
         ),
         child: widget,
       ),

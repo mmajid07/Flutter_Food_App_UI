@@ -10,6 +10,9 @@ class AppTheme {
   static const Color welcomeInrto = Color(0xffEB4646);
   static const Color lightGrey = Color.fromARGB(255, 158, 158, 158);
   static const Color starColor = Color(0xffEB7B2C);
+  static const Color lableColor = Color(0xff9CA3AF);
+
+
 
   // // Handle Font here
   // static const double headlineFontSize = 24.0;
@@ -36,7 +39,7 @@ class AppTheme {
     final titleStyle = TextStyle(
         fontSize: ScreenSize.screenWidth(context) * 0.04,
         fontWeight: FontWeight.w600,
-        color: secandryColor);
+        color: lableColor);
     return titleStyle;
   }
 
