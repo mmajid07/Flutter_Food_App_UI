@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAVMZLTiTFMeMmk7ekzJqqW6Q2S-AzPx8s',
+    apiKey: 'Your api key',
     appId: '1:119121255614:web:f9cd4dc69d2ca3c78852ef',
     messagingSenderId: '119121255614',
     projectId: 'restaurant-food-app-64809',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA4RTxtUAoo3h7A8J-z_ZjuG2n-s1PUpV4',
+    apiKey: 'Your api key',
     appId: '1:119121255614:android:3c809084f68850b88852ef',
     messagingSenderId: '119121255614',
     projectId: 'restaurant-food-app-64809',
