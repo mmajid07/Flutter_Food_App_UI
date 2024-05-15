@@ -7,16 +7,25 @@ class ImageComponent extends StatelessWidget {
   final BoxFit? boxFit;
   final double? height;
   final double? width;
+  final Color? imageColor;
   const ImageComponent(
-      {super.key, required this.image, this.boxFit, this.height, this.width});
+      {super.key,
+      required this.image,
+      this.boxFit,
+      this.height,
+      this.width,
+      this.imageColor});
 
   @override
   Widget build(BuildContext context) {
     return Image(
-      image: AssetImage(image),
+      image: AssetImage(
+        image,
+      ),
       fit: boxFit,
       height: height,
       width: width,
+      color: imageColor,
     );
   }
 }

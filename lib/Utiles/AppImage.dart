@@ -26,4 +26,10 @@ class AppImage {
   static const String favorite = "asset/images/favorite.png";
   static const String ratingStar = "asset/images/ratingStar.png";
   static const String bookIcon = "asset/images/bookIcon.png";
+  static const String uploadImage = "asset/images/Upload_Image.png";
+  static const String uploadMenu = "asset/images/uploadMenu.png";
+  static const String editImage = "asset/images/editImage.png";
+  static const String courno = "asset/images/courno.png";
+  static const String logout = "asset/images/logout.png";
+  static const String location = "asset/images/location.png";
 }

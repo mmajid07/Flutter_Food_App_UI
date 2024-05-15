@@ -6,6 +6,8 @@ import 'package:sol_solution_food_app/Utiles/AppStrings.dart';
 import 'package:sol_solution_food_app/Utiles/App_Theme.dart';
 import 'package:sol_solution_food_app/Utiles/ScreenSize.dart';
 
+import 'AdminSideScreen/Admin_Login_SignUp_Screen.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key});
 
@@ -79,8 +81,25 @@ class WelcomeScreen extends StatelessWidget {
                           height: ScreenSize.screenHeight(context) * 0.02,
                         ),
                         ElevatedBTN_Component(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           widget: Text(AppStrings.create_Account),
+                          bgColor: AppTheme.white,
+                          fgColor: AppTheme.black,
+                        ),
+
+                        SizedBox(
+                          height: ScreenSize.screenHeight(context) * 0.02,
+                        ),
+                        ElevatedBTN_Component(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AdminLoginSignUpScreen()));
+                          },
+                          widget: Text("Admin Login"),
                           bgColor: AppTheme.white,
                           fgColor: AppTheme.black,
                         ),

@@ -15,7 +15,5 @@ class SplashProvider with ChangeNotifier {
         ),
       ),
     );
-
-    notifyListeners();
   }
 }

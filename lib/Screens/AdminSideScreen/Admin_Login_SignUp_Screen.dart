@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -8,49 +9,45 @@ import 'package:sol_solution_food_app/Component/ElevatedBTN_Component.dart';
 import 'package:sol_solution_food_app/Component/Image_Component.dart';
 import 'package:sol_solution_food_app/Component/Text_Component.dart';
 import 'package:sol_solution_food_app/Provider/LoginSignUp_Provider.dart';
+import 'package:sol_solution_food_app/Screens/AdminSideScreen/Auth_Service/Auth_Service.dart';
 import 'package:sol_solution_food_app/Screens/AdminSideScreen/Auth_Service/FormValidation.dart';
-import 'package:sol_solution_food_app/Screens/AdminSideScreen/Auth_Service/GoogleAuth.dart';
-import 'package:sol_solution_food_app/Screens/HomeScreen.dart';
-import 'package:sol_solution_food_app/Screens/MapScreen.dart';
-import 'package:sol_solution_food_app/Screens/UserModel/UserModel.dart';
+import 'package:sol_solution_food_app/Screens/AdminSideScreen/BottomNavBar.dart';
+import 'package:sol_solution_food_app/Screens/AdminSideScreen/CompanyRegisterScreen.dart';
+import 'package:sol_solution_food_app/Screens/AdminSideScreen/Model/adminDetailModel.dart';
 import 'package:sol_solution_food_app/Utiles/AppImage.dart';
 import 'package:sol_solution_food_app/Utiles/AppStrings.dart';
 import 'package:sol_solution_food_app/Utiles/App_Theme.dart';
 import 'package:sol_solution_food_app/Utiles/ScreenSize.dart';
 
-import '../User_Auth_Service/Auth_Service.dart';
-import 'AdminSideScreen/Model/adminDetailModel.dart';
-
-class LoginSignUpScreen extends StatefulWidget {
-  const LoginSignUpScreen({Key? key});
+class AdminLoginSignUpScreen extends StatefulWidget {
+  const AdminLoginSignUpScreen({Key? key});
 
   @override
-  State<LoginSignUpScreen> createState() => _LoginSignUpScreenState();
+  State<AdminLoginSignUpScreen> createState() => _AdminLoginSignUpScreenState();
 }
 
-class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
+class _AdminLoginSignUpScreenState extends State<AdminLoginSignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  final _formkey=GlobalKey<FormState>();
-  AuthService authService=AuthService();
-
   FirebaseFirestore firestore=FirebaseFirestore.instance;
 
-  Future<void> saveUserDetail(String uid)async{
+  final _formKey=GlobalKey<FormState>();
+
+  Future<void> saveAdminDetail(String uid)async{
 
     try{
-      UserDetailModel userDetailModel=UserDetailModel(name: nameController.text,email: emailController.text, password: passwordController.text);
+      AdminDetail adminDetail=AdminDetail(email: emailController.text, password: passwordController.text);
 
-      await firestore.collection("user").doc(uid).set({
-        "userDetail": userDetailModel.toMap()
+      await firestore.collection("admin").doc(uid).set({
+        "adminDetail": adminDetail.toMap()
       },SetOptions(merge:true));
     }catch(e){
       throw Exception("Error $e");
     }
 
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +74,10 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: ScreenSize.screenHeight(context) * 0.35,
+                  height: ScreenSize.screenHeight(context) * 0.5,
                 ),
                 Container(
-                  height: ScreenSize.screenHeight(context) *
-                      (provider.isCreate_Account ? 0.65 : 0.6),
+                  height: ScreenSize.screenHeight(context) *0.5,
                   width: ScreenSize.screenWidth(context) * 1,
                   decoration: BoxDecoration(
                       color: AppTheme.white,
@@ -204,38 +200,9 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Form(
-                                            key: _formkey,
+                                            key: _formKey,
                                             child: Column(
                                           children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: ScreenSize.screenWidth(
-                                                          context) *
-                                                          0.03),
-                                                  child: Text(
-                                                    AppStrings.fullName,
-                                                    style:
-                                                    AppTheme.CustemlableStyle(
-                                                        context),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: ScreenSize.screenHeight(
-                                                      context) *
-                                                      0.01,
-                                                ),
-                                                CustomTextField(
-                                                    validate: Validator.validateName,
-                                                    controller: nameController,
-                                                    hintText: AppStrings.fullName),
-                                              ],
-                                            ),
                                             Column(
                                               mainAxisAlignment:
                                               MainAxisAlignment.start,
@@ -260,7 +227,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                                       0.01,
                                                 ),
                                                 CustomTextField(
-                                                    validate: Validator.validateEmail,
+                                                  validate: Validator.validateEmail,
                                                     controller: emailController,
                                                     hintText: AppStrings.email),
                                               ],
@@ -301,11 +268,11 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
 
                                         ElevatedBTN_Component(
                                           onPressed: () async{
-                                            if(_formkey.currentState!.validate()){
+                                            if(_formKey.currentState!.validate()){
                                               FirebaseAuth auth=FirebaseAuth.instance;
                                               User? user=auth.currentUser;
                                               String uid= user!.uid;
-                                              await saveUserDetail(uid);
+                                              await saveAdminDetail(uid);
                                               final message = await AuthService().registration(
                                                 email: emailController.text,
                                                 password: passwordController.text,
@@ -318,6 +285,8 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                                 );
                                               }
                                             }
+
+
                                           },
                                           widget: Text(AppStrings.register),
                                           bgColor: AppTheme.primaryColor,
@@ -360,7 +329,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Form(
-                                            key: _formkey,
+                                            key: _formKey,
                                             child: Column(
                                               children: [
                                                 Column(
@@ -387,7 +356,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                                           0.01,
                                                     ),
                                                     CustomTextField(
-                                                        validate: Validator.validateEmail,
+                                                      validate: Validator.validateEmail,
                                                         controller: emailController,
                                                         hintText: AppStrings.email),
                                                   ],
@@ -425,7 +394,6 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                                 ),
                                               ],
                                             )),
-
                                         GestureDetector(
                                             onTap: () {},
                                             child: Align(
@@ -441,66 +409,70 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                                                        ),
                                             )),
                                         ElevatedBTN_Component(
-                                           onPressed: ()async{
-                                             if(_formkey.currentState!.validate()){
-                                               try {
-                                                 User? user = FirebaseAuth.instance.currentUser;
-                                                 if (user != null) {
-                                                   String? uid = user.uid;
-                                                   if (uid != null) {
+                                          radius: 10,
+                                          onPressed: () async{
+                                            if(_formKey.currentState!.validate()){
+                                              try {
+                                                User? user = FirebaseAuth.instance.currentUser;
+                                                if (user != null) {
+                                                  String? uid = user.uid;
+                                                  if (uid != null) {
+                                                    DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection("admin").doc(uid).get();
 
-                                                     final message = await AuthService().login(
-                                                       email: emailController.text,
-                                                       password: passwordController.text,
-                                                     );
+                                                    final message = await AuthService().login(
+                                                      email: emailController.text,
+                                                      password: passwordController.text,
+                                                    );
 
-                                                     if (message!.contains('Success')) {
-                                                       Navigator.of(context).pushReplacement(
-                                                         MaterialPageRoute(builder: (context) => HomeScreen()),
-                                                       );
-                                                     }
+                                                    if (message!.contains('Success')) {
+                                                      if (snapshot.exists) {
+                                                        Navigator.of(context).pushReplacement(
+                                                          MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
+                                                        );
+                                                      } else {
+                                                        Navigator.of(context).pushReplacement(
+                                                          MaterialPageRoute(builder: (context) => CompanyRegisterScreen()),
+                                                        );
+                                                      }
+                                                    }
 
-                                                     ScaffoldMessenger.of(context).showSnackBar(
-                                                       SnackBar(
-                                                         content: Text(message),
-                                                       ),
-                                                     );
-                                                   } else {
-                                                     ScaffoldMessenger.of(context).showSnackBar(
-                                                       SnackBar(
-                                                         content: Text("User email is null"),
-                                                       ),
-                                                     );
-                                                   }
-                                                 } else {
-                                                   ScaffoldMessenger.of(context).showSnackBar(
-                                                     SnackBar(
-                                                       content: Text("User is not authenticated"),
-                                                     ),
-                                                   );
-                                                 }
-                                               } catch (e) {
-                                                 ScaffoldMessenger.of(context).showSnackBar(
-                                                   SnackBar(
-                                                     content: Text("Error: $e"),
-                                                   ),
-                                                 );
-                                               }
-                                             }
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(message!),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                        content: Text("User email is null"),
+                                                      ),
+                                                    );
+                                                  }
+                                                } else {
+                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                    SnackBar(
+                                                      content: Text("User is not authenticated"),
+                                                    ),
+                                                  );
+                                                }
+                                              } catch (e) {
+                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text("Error: $e"),
+                                                  ),
+                                                );
+                                              }
+                                            }
 
-
-                                           },
-
+                                          },
                                           widget: Text(AppStrings.login),
                                           bgColor: AppTheme.primaryColor,
                                           fgColor: AppTheme.white,
                                         ),
-                                        ElevatedBTN_Component(
-                                          onPressed: () async{
-                                            GoogleAuthService googleAuth=GoogleAuthService();
-                                            googleAuth.signInWithGoogle();
 
-                                          },
+                                        ElevatedBTN_Component(
+                                          radius: 10,
+                                          onPressed: () {},
                                           widget: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,

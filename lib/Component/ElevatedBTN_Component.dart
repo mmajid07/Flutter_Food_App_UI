@@ -9,6 +9,7 @@ class ElevatedBTN_Component extends StatelessWidget {
   final Color? bgColor;
   final Color? fgColor;
   final Color? borderSideColor;
+  final double? radius;
 
   const ElevatedBTN_Component({
     Key? key,
@@ -18,10 +19,12 @@ class ElevatedBTN_Component extends StatelessWidget {
     this.bgColor,
     this.fgColor,
     this.borderSideColor,
+    this.radius,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final rad=radius??10;
     return SizedBox(
       height: ScreenSize.screenHeight(context) * 0.06,
       width: ScreenSize.screenWidth(context) * 0.7,
@@ -30,7 +33,10 @@ class ElevatedBTN_Component extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: bgColor,
           foregroundColor: fgColor,
-          side: BorderSide(color: AppTheme.primaryColor), // Change border side color to red
+          side: BorderSide(color: AppTheme.primaryColor),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(rad), // Set border side radius to 10
+          ),
         ),
         child: widget,
       ),
